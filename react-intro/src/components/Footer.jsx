@@ -1,6 +1,12 @@
 import React from 'react'
 import "../App.css"
 function Footer() {
+  let links = [
+    {id : 1 , name : 'Home' , url : '#'},
+    {id : 2 , name : 'About Us' , url : '#'},
+    {id : 3 , name : 'Services' , url : '#'},
+    {id : 4 , name : 'Contact' , url : '#'},
+  ]
   return (
     <>
     <footer class="footer">
@@ -13,10 +19,9 @@ function Footer() {
     <div class="footer-column">
       <h4>Quick Links</h4>
       <ul class="footer-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
+        {links.map((link) => {
+          return <li><a href={link.url}>{link.name}</a></li>
+        })}
       </ul>
     </div>
 
