@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
 
 function AddItem() {
-    let [inputValue , setInputValue] = useState([]);
+    let [inputValue , setInputValue] = useState("");
     let [item , setItem] = useState([]);
 
     function handleChange (e){
         // setInputValue(...e,e.target.value) give the error e is not itterable 
-        setInputValue([...inputValue,e.target.value])
+        setInputValue(e.target.value)
         // setInputValue([...inputValue, e.target.value])
     }
     console.log(inputValue)
 
     function addItem(){
-        set
+        if (inputValue.trim() === '') return; 
+
+        setItem([...item,inputValue])
+
+            setInputValue(''); 
+
     }
 
   return (
@@ -23,18 +28,18 @@ function AddItem() {
        name="" id=""
        value={inputValue} 
        onChange={handleChange} 
-       className='w-48 h-12 bg-blue-300 text-2xl text-center text-black  '/>
-      {/* <button onClick={(()=>{addItem})} className='w-48 h-12 bg-green-500 text-2xl text-center text-white rounded-xl'>add </button>
+       className='w-48 h-12 bg-amber-300 border-2 border-black text-2xl rounded-2xl  text-center text-black  '/>
+      <button onClick={addItem} className='w-48 h-12 bg-green-500 text-2xl text-center text-white rounded-xl'>add </button>
 
         <div>
             <h1>Items:</h1>
-            <ul>
+            <ul className='flex flex-col gap-5'>
                 {item ? item.map((i,idx)=>{
-                    <li id={idx}>{i}</li>
+                    return <li className='w-48 flex  gap-5 justify-around items-center rounded-3xl  bg-amber-200 ' id={idx}>{i} <button onClick={() => setItem(item.filter((_, index) => index !== idx))} className='w-20 h-10 rounded-2xl text-amber-200 bg-red-600  text-center p-5'>delete</button></li>
                 }) : "items not found "}
             </ul>
         </div>
- */}
+ 
 
     </div>
   )
