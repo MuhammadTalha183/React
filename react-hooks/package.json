@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.io",
+  "homepage": "https://MuhammadTalha183.github.io/React/react-hooks",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

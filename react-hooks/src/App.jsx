@@ -96,7 +96,7 @@ function App() {
               <button
                 className="flex h-14 min-w-24 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-5 text-xl font-bold text-white"
               >
-                {count}
+               
               </button>
 
               <button
