@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router'
 
 import './App.css'
 import Login from './pages/Login'
@@ -10,9 +11,16 @@ function App() {
 
   return (
    <div>
-    {/* <Login/> */}
-    {/* <Register/> */}
-    <Home/>
+    {/* <Login/>
+    <Register/>
+    <Home/> */}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
    </div>
   )
 }
