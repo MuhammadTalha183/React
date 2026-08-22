@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 function AddItem() {
     let [input , setIput ] = useState("")
     let [task , setTask ] = useState([])
+    let [id , setId ] = useState(null)
 
 //  notification popup
 function notify(message) {
@@ -33,6 +34,12 @@ function notify(message) {
         setIput("")
     }
     console.log(task)
+    // Handle Delete Item
+    function handleDelete (id){
+        setTask((prev)=> prev.filter((item)=> item.id !== id))
+        notify("Item Deleted Successfully")
+    }
+
   return (
    <div className='flex flex-col items-center justify-center h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] p-6 text-white'>
   {/* Modern Glassmorphism Card */}
@@ -60,7 +67,8 @@ function notify(message) {
           <p className='w-[70%]' >{item.title}</p>
           <div className='flex gap-3'>
             <button className='text-green-500 text-lg font-semibold'>Edit</button>
-          <button className='text-red-500 text-lg font-semibold'>Delete</button>
+          <button className='text-red-500 text-lg font-semibold'
+          onClick={() => handleDelete(item.id)}>Delete</button>
           </div>
           </div>
                 
