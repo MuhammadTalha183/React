@@ -8,11 +8,11 @@ import AddItem from './components/AddItem'
 function App() {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/>
       <Cards/>
-      <Packing/>
+      <Packing/> */}
       <AddItem/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

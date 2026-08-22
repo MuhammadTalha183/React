@@ -1,48 +1,82 @@
 import React, { useState } from 'react'
+  import { ToastContainer, toast } from 'react-toastify';
 
 function AddItem() {
-    let [inputValue , setInputValue] = useState("");
-    let [item , setItem] = useState([]);
+    let [input , setIput ] = useState("")
+    let [task , setTask ] = useState([])
 
-    function handleChange (e){
-        // setInputValue(...e,e.target.value) give the error e is not itterable 
-        setInputValue(e.target.value)
-        // setInputValue([...inputValue, e.target.value])
+//  notification popup
+function notify(message) {
+    toast(message);
+}
+
+//   handle the object of task 
+    let todo = {
+        id : Date.now(),
+        title : input
     }
-    console.log(inputValue)
-
-    function addItem(){
-        if (inputValue.trim() === '') return; 
-
-        setItem([...item,inputValue])
-
-            setInputValue(''); 
-
+//   hande Input 
+    function handleInput (value){
+        setIput(value)
+        
     }
+    console.log(input)
+//  Hanle add Item 
+    function handleTask (){
+        if (!input.trim()){
+        notify("Please Enter any value ")
+        }else{
+            setTask((prev)=>[...prev , todo])
+            notify("Item Added Successfully")
+        }
 
+        setIput("")
+    }
+    console.log(task)
   return (
-    <div className='w-full h-96 flex flex-col  items-center justify-center gap-4 bg-gray-100'>
-        <h1 className='text-2xl text-center bg-amber-500 rounded-xl w-48'> Add Item</h1>
-      <input
-       type="text"
-       name="" id=""
-       value={inputValue} 
-       onChange={handleChange} 
-       className='w-48 h-12 bg-amber-300 border-2 border-black text-2xl rounded-2xl  text-center text-black  '/>
-      <button onClick={addItem} className='w-48 h-12 bg-green-500 text-2xl text-center text-white rounded-xl'>add </button>
+   <div className='flex flex-col items-center justify-center h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] p-6 text-white'>
+  {/* Modern Glassmorphism Card */}
+  <div className='flex items-center h-20  gap-3  w-full max-w-sm bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl  transition-all duration-300 hover:border-white/40'>
+    <input 
+      type="text" 
+      placeholder="Add a new item..." 
+      value={input}
+      onChange={(e)=>{handleInput(e.target.value)}}
+      className='flex w-[80%] text-lg text-left pl-5 h-11   bg-black/30 text-white placeholder-gray-400  outline-none border border-white/10 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/40 transition-all'
+    />
+    <button className='bg-gradient-to-r w-20 from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 active:scale-95 text-white font-semibold text-sm px-5 h-11 rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-200'
+    onClick={handleTask}>
+      ADD
+    </button>
 
-        <div>
-            <h1>Items:</h1>
-            <ul className='flex flex-col gap-5'>
-                {item ? item.map((i,idx)=>{
-                    return <li className='w-48 flex  gap-5 justify-around items-center rounded-3xl  bg-amber-200 ' id={idx}>{i} <button onClick={() => setItem(item.filter((_, index) => index !== idx))} className='w-20 h-10 rounded-2xl text-amber-200 bg-red-600  text-center p-5'>delete</button></li>
-                }) : "items not found "}
-            </ul>
+    
+  </div>
+          <ToastContainer />
+
+        <div className='flex flex-col items-center justify-center w-full max-w-sm mt-5'>
+                     {task.length > 0 ? task.map((item)=>{
+            return (
+                 <div key={item.id} className=' m-5 h-10 max-w-sm rounded-2xl p-10 flex items-center justify-center  w-full  bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl   transition-all duration-300 hover:border-white/40'>
+          <p className='w-[70%]' >{item.title}</p>
+          <div className='flex gap-3'>
+            <button className='text-green-500 text-lg font-semibold'>Edit</button>
+          <button className='text-red-500 text-lg font-semibold'>Delete</button>
+          </div>
+          </div>
+                
+            )
+         }): "No items added yet."}
         </div>
- 
 
-    </div>
+
+          
+
+</div>
+
   )
 }
 
 export default AddItem
+
+
+
