@@ -86,5 +86,3 @@ function notify(message) {
 
 export default AddItem
 
-
-
