@@ -119,7 +119,7 @@
 
 
 import React, { useState } from 'react'
-import Card from './components/card'
+import Card from './components/Card'
 import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
