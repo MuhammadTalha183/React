@@ -20,7 +20,7 @@ function Login() {
                 if (user) {
                     notify("User Logged in Successfully")
                     setTimeout(() => {
-                        navigate('/dashboard')
+                        navigate('/')
                     }, 3000)
                 }
                 // ...
