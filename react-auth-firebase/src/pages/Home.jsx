@@ -1,16 +1,15 @@
 import React from 'react'
-
+import Navbar from '../components/Navbar'
 function Home() {
 
-    function removeUserHandler() {
-        localStorage.removeItem('user')
-        // window.location.reload()
-    }
+
+   
   return (
     <div>
+      <Navbar/>
       <h1 className='text-center mt-5 font-bold text-3xl'>Welcome to the Home Page</h1>
 
-      <button onClick={removeUserHandler}>Logout</button>
+      
     </div>
   )
 }
