@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Cards({loading ,users}) {
+function Cards({loading ,users , deleteDoc}) {
   return (
     <div>
               {/* Loading State */}
@@ -49,7 +49,7 @@ function Cards({loading ,users}) {
                   </div>
                 </div>
 
-              <button className='bg-red-500 p-3 rounded-2xl font-bold text-xl mt-3'>Delete</button>
+              <button className='bg-red-500 p-3 rounded-2xl font-bold text-xl mt-3' onClick={() => deleteDoc(user.id)}>Delete</button>
                 
               </div>
             ))}

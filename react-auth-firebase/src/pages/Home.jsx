@@ -2,13 +2,18 @@
 // export default Home
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs ,doc, deleteDoc } from "firebase/firestore";
+import { ToastContainer, toast } from 'react-toastify';
+
 // Ensure this import matches how you exported db in your config file
 import { db } from "../firebase/config.js"; 
 import Cards from '../components/Cards.jsx';
 
 function Home() {
   // State to hold the array of fetched users
+
+      const notify = (message) => toast(message);
+  
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,12 +35,24 @@ function Home() {
     }
   };
 
+  async function deleteHandler(userId) {
+
+    try {
+      const deleteUser = await deleteDoc(doc(db, "Users", userId));
+      notify("User deleted successfully");
+    } catch (error) {
+      console.error("Error deleting user from Firestore: ", error);
+    }
+  }
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [deleteHandler]); // Re-fetch data when a user is deleted
 
   return (
+   
     <div className="min-h-screen bg-slate-950 text-slate-100">
+       <ToastContainer />
       <Navbar />
       
       <div className="max-w-6xl mx-auto px-4 py-10">
@@ -43,7 +60,7 @@ function Home() {
           Registered Users
         </h1>
 
-        <Cards loading={loading} users={users} />
+        <Cards loading={loading} users={users}  deleteDoc={deleteHandler} />
       </div>
     </div>
   );
