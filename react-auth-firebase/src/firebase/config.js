@@ -17,9 +17,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 export default app;
-const db = getFirestore(app);
 
 
 // Import the functions you need from the SDKs you need
