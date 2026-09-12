@@ -62,9 +62,10 @@ function Navbar({ user }) {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" className="bg-amber-800">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" },
+           mr: 1 , color: "brown"}} />
           <Typography
             variant="h6"
             noWrap
