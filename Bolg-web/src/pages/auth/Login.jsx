@@ -213,7 +213,7 @@ const navigate = useNavigate();
             }
 
             setTimeout(() => {
-                navigate("/");
+                navigate("/Dashboard");
             }, 5000);
 
         } catch (error) {
