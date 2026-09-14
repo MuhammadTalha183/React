@@ -159,7 +159,8 @@ import {
     GoogleAuthProvider
 } from "firebase/auth";
 
-import { auth } from '../../firebase/config.js';
+import { auth , db } from '../../firebase/config.js';
+import { doc, setDoc } from "firebase/firestore"; 
 
 import {
     ToastContainer,
@@ -167,6 +168,58 @@ import {
 } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+
+
+// export const saveDataIntoDB = async (name = "", data) => {
+//       console.log(data);
+//     //  return  
+//     try {
+
+//         if (!data || !data.uid) {
+//             toast.error("Invalid user data");
+//             return;
+//         }
+//   await setDoc(doc(db, "users", data.uid), {
+//     email : data.email,
+//     name : data.displayName ? data.displayName : name,
+//     photoUrl : data.photoURL ? data.photoURL : ""
+//   });
+  
+
+
+//     } catch (error) {
+//       toast.error(error.message);
+//     }
+//   } 
+
+export const saveDataIntoDB = async (name = "", data) => {
+    console.log("USER DATA:", data);
+    console.log("UID:", data?.uid);
+    console.log("DB:", db);
+
+    try {
+        const userRef = doc(db, "users", data.uid);
+
+        console.log("DOCUMENT REF:", userRef);
+
+        await setDoc(userRef, {
+            email: data.email || "",
+            name: data.displayName || name || "",
+            photoUrl: data.photoURL || "",
+        });
+
+        console.log("🔥 FIRESTORE DATA SAVED");
+
+        return true;
+
+    } catch (error) {
+        console.error("🔥 FIRESTORE ERROR:", error);
+        console.error("ERROR CODE:", error.code);
+        console.error("ERROR MESSAGE:", error.message);
+
+        throw error;
+    }
+};
 
 
 function Signup() {
@@ -200,9 +253,13 @@ function Signup() {
 
             console.log(response);
 
-            if (response.user) {
-                toast.success("user signup successfully!");
-            }
+            await saveDataIntoDB(form.username, response.user);
+
+    toast.success("User signup successfully!");
+
+    setTimeout(() => {
+        navigate("/login");
+    }, 5000);
 
         } catch (error) {
 

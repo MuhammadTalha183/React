@@ -189,7 +189,7 @@ function Login() {
                 toast.success("user login successfully!");
             }
             setTimeout(() => {
-                navigate("/");
+                navigate("/dashboard");
             }, 5000);
         } catch (error) {
             toast.error(error.message);
