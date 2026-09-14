@@ -11,15 +11,7 @@
 
 //   return (
 //   <>
-//   <AnimatedCanvasBackground isDarkMode={isDarkMode} />
-//   <Navbar
-//   currentTab={currentTab}
-//   setCurrentTab={setCurrentTab}
-//   isDarkMode={isDarkMode}
-//   setIsDarkMode={setIsDarkMode}
-//   textColor={textColor}
-//   textMuted={textMuted}
-//   cardBorder={cardBorder}/>
+//  
 //   <BrowserRouter>
 //   <Routes>
 //     {/* <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>} /> */}
@@ -40,6 +32,12 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { Compass, PenTool } from "lucide-react";
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import AnimatedCanvasBackground from "./components/AnimatedCanvasBackground";
 import ModernFooter from "./components/ModernFooter";
@@ -47,26 +45,33 @@ import ModernFooter from "./components/ModernFooter";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Placeholder from "./pages/Placeholder";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 
 import { FEATURED_POSTS } from "./data/blogData";
 
-function App() {
+function BlogApp() {
   const [currentTab, setCurrentTab] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [activeCategory, setActiveCategory] =
     useState("All Topics");
 
-  const [activePostIndex, setActivePostIndex] = useState(0);
+  const [activePostIndex, setActivePostIndex] =
+    useState(0);
 
-  const [bookmarked, setBookmarked] = useState({});
-  const [liked, setLiked] = useState({});
+  const [bookmarked, setBookmarked] =
+    useState({});
 
-  const [likeCounts, setLikeCounts] = useState({
-    1: FEATURED_POSTS[0].likes,
-    2: FEATURED_POSTS[1].likes,
-    3: FEATURED_POSTS[2].likes
-  });
+  const [liked, setLiked] =
+    useState({});
+
+  const [likeCounts, setLikeCounts] =
+    useState({
+      1: FEATURED_POSTS[0].likes,
+      2: FEATURED_POSTS[1].likes,
+      3: FEATURED_POSTS[2].likes,
+    });
 
   const themeBg = isDarkMode
     ? "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #111827 100%)"
@@ -94,18 +99,25 @@ function App() {
         minHeight: "100vh",
         position: "relative",
         overflow: "hidden",
+
         background: themeBg,
         color: textColor,
-        fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-        transition: "background 0.5s ease, color 0.5s ease"
+
+        fontFamily:
+          "'Inter', system-ui, -apple-system, sans-serif",
+
+        transition:
+          "background 0.5s ease, color 0.5s ease",
       }}
     >
       {/* Animated Background */}
+
       <AnimatedCanvasBackground
         isDarkMode={isDarkMode}
       />
 
       {/* Navbar */}
+
       <Navbar
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
@@ -117,6 +129,7 @@ function App() {
       />
 
       {/* Home */}
+
       {currentTab === "home" && (
         <Home
           isDarkMode={isDarkMode}
@@ -139,6 +152,7 @@ function App() {
       )}
 
       {/* About */}
+
       {currentTab === "about" && (
         <About
           isDarkMode={isDarkMode}
@@ -151,6 +165,7 @@ function App() {
       )}
 
       {/* Articles */}
+
       {currentTab === "articles" && (
         <Placeholder
           title="Articles & Explore"
@@ -165,6 +180,7 @@ function App() {
       )}
 
       {/* Writer's Studio */}
+
       {currentTab === "write" && (
         <Placeholder
           title="Writer's Studio"
@@ -179,6 +195,7 @@ function App() {
       )}
 
       {/* Footer */}
+
       <ModernFooter
         isDarkMode={isDarkMode}
         textColor={textColor}
@@ -188,6 +205,7 @@ function App() {
       />
 
       {/* Animation Styles */}
+
       <style>
         {`
           @keyframes blink {
@@ -244,6 +262,36 @@ function App() {
         `}
       </style>
     </Box>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+
+        {/* Main Blog */}
+
+       
+
+        {/* Login Page */}
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+         <Route
+          path="/signup"
+          element={<Signup   />}
+        />
+
+         <Route
+          path="/*"
+          element={<BlogApp />}
+        />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 

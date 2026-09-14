@@ -202,7 +202,7 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
 import {
   BookOpen,
   PenTool,
@@ -218,13 +218,18 @@ function Navbar({
   textColor,
   textMuted,
   cardBorder,
-}) {
+}) 
+
+{
+  const navigate = useNavigate();
+
   const navItems = [
     { label: "Home", tab: "home" },
     { label: "Articles", tab: "articles" },
     { label: "About Us", tab: "about" },
     { label: "Write", tab: "write" },
   ];
+  
 
   return (
     <Container
@@ -392,7 +397,9 @@ function Navbar({
 
     <Button
       variant="contained"
-      onClick={() => setCurrentTab("write")}
+    onClick={() =>
+              navigate("/login")
+            }
       startIcon={<PenTool size={18} />}
       sx={{
         borderRadius: "12px",

@@ -1,148 +1,131 @@
 
 
-// import React, { useState } from 'react';
-// import Input from '../../components/Input';
-// import Button from '../../components/Button';
-// import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-// import { auth } from '../../firebase/config.js';
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+// // import React, { useState } from 'react';
+// // import Input from '../../components/Input';
+// // import Button from '../../components/Button';
+// // import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// // import { auth } from '../../firebase/config.js';
+// // import { ToastContainer, toast } from "react-toastify";
+// // import "react-toastify/dist/ReactToastify.css";
 
-// function Signup() {
-//     let [form, setForm] = useState({
-//         username: "",
-//         email: "",
-//         password: ""
-//     });
+// // function Signup() {
+// //     let [form, setForm] = useState({
+// //         username: "",
+// //         email: "",
+// //         password: ""
+// //     });
 
-//     function handleSubmit(name, value) {
-//         console.log(value, name);
-//         setForm((prev) => ({ ...prev, [name]: value }));
-//     }
+// //     function handleSubmit(name, value) {
+// //         console.log(value, name);
+// //         setForm((prev) => ({ ...prev, [name]: value }));
+// //     }
 
-//     async function handleSignup() {
-//         try {
-//             let response = await createUserWithEmailAndPassword(auth, form.email, form.password);
-//             console.log(response);
-//             if (response.user) {
-//                 toast.success("user signup successfully!");
-//             }
-//         } catch (error) {
-//             console.log(error.message, error.code);
-//             if (
-//                 error.message === "Firebase: Error (auth/email-already-in-use)" ||
-//                 error.code === "auth/email-already-in-use" 
+// //     async function handleSignup() {
+// //         try {
+// //             let response = await createUserWithEmailAndPassword(auth, form.email, form.password);
+// //             console.log(response);
+// //             if (response.user) {
+// //                 toast.success("user signup successfully!");
+// //             }
+// //         } catch (error) {
+// //             console.log(error.message, error.code);
+// //             if (
+// //                 error.message === "Firebase: Error (auth/email-already-in-use)" ||
+// //                 error.code === "auth/email-already-in-use" 
                
-//             ) {
-//                 toast.error("Email already Exist!");
-//             }else {
-//                 toast.error(error.message);
-//             }
-//         }
-//     }
+// //             ) {
+// //                 toast.error("Email already Exist!");
+// //             }else {
+// //                 toast.error(error.message);
+// //             }
+// //         }
+// //     }
 
-//     const signupWithGoogleHandler = async () => {
-//         console.log("signup chl raha haii..");
-//         try {
-//             const provider = new GoogleAuthProvider();
-//             let response = await signInWithPopup(auth, provider);
-//             console.log(response);
-//             if (response.user) {
-//                 toast.success("user signup successfully!");
-//             }
-//         } catch (error) {
-//             toast.error(error.message);
-//         }
-//     };
+// //     const signupWithGoogleHandler = async () => {
+// //         console.log("signup chl raha haii..");
+// //         try {
+// //             const provider = new GoogleAuthProvider();
+// //             let response = await signInWithPopup(auth, provider);
+// //             console.log(response);
+// //             if (response.user) {
+// //                 toast.success("user signup successfully!");
+// //             }
+// //         } catch (error) {
+// //             toast.error(error.message);
+// //         }
+// //     };
 
-//     return (
-//         <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4 font-sans">
-//             <div className="w-full flex flex-col items-center justify-center  max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 p-8 space-y-6">
+// //     return (
+// //         <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4 font-sans">
+// //             <div className="w-full flex flex-col items-center justify-center  max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 p-8 space-y-6">
                 
-//                 {/* Header */}
-//                 <div className="text-center space-y-1.5">
-//                     <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-//                         Create your account
-//                     </h1>
-//                     <p className="text-sm text-slate-500">
-//                         Join us today to get started
-//                     </p>
-//                 </div>
+// //                 {/* Header */}
+// //                 <div className="text-center space-y-1.5">
+// //                     <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+// //                         Create your account
+// //                     </h1>
+// //                     <p className="text-sm text-slate-500">
+// //                         Join us today to get started
+// //                     </p>
+// //                 </div>
 
-//                 {/* Input Fields Container */}
-//                 <div className="space-y-4">
-//                     <Input 
-//                         label="Username" 
-//                         type="text" 
-//                         name="username" 
-//                         value={form.username} 
-//                         handler={handleSubmit} 
-//                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
-//                     />
-//                     <Input 
-//                         label="Email" 
-//                         type="email" 
-//                         name="email" 
-//                         value={form.email} 
-//                         handler={handleSubmit} 
-//                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
-//                     />
-//                     <Input 
-//                         label="Password" 
-//                         type="password" 
-//                         name="password" 
-//                         value={form.password} 
-//                         handler={handleSubmit} 
-//                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
-//                     />
-//                 </div>
+// //                 {/* Input Fields Container */}
+// //                 <div className="space-y-4">
+// //                     <Input 
+// //                         label="Username" 
+// //                         type="text" 
+// //                         name="username" 
+// //                         value={form.username} 
+// //                         handler={handleSubmit} 
+// //                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+// //                     />
+// //                     <Input 
+// //                         label="Email" 
+// //                         type="email" 
+// //                         name="email" 
+// //                         value={form.email} 
+// //                         handler={handleSubmit} 
+// //                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+// //                     />
+// //                     <Input 
+// //                         label="Password" 
+// //                         type="password" 
+// //                         name="password" 
+// //                         value={form.password} 
+// //                         handler={handleSubmit} 
+// //                         className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+// //                     />
+// //                 </div>
 
-//                 {/* Actions */}
-//                 <div className="space-y-3 pt-2">
-//                     <Button 
-//                         buttontext="Sign Up"  
-//                         handler={handleSignup} 
-//                         className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-2.5 rounded-lg shadow-sm transition duration-150 text-center"
-//                     />
+// //                 {/* Actions */}
+// //                 <div className="space-y-3 pt-2">
+// //                     <Button 
+// //                         buttontext="Sign Up"  
+// //                         handler={handleSignup} 
+// //                         className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-2.5 rounded-lg shadow-sm transition duration-150 text-center"
+// //                     />
                     
-//                     {/* Visual Divider */}
-//                     <div className="relative flex py-2 items-center">
-//                         <div className="flex-grow border-t border-slate-200"></div>
-//                         <span className="flex-shrink mx-4 text-slate-400 text-xs font-medium uppercase tracking-wider">Or</span>
-//                         <div className="flex-grow border-t border-slate-200"></div>
-//                     </div>
+// //                     {/* Visual Divider */}
+// //                     <div className="relative flex py-2 items-center">
+// //                         <div className="flex-grow border-t border-slate-200"></div>
+// //                         <span className="flex-shrink mx-4 text-slate-400 text-xs font-medium uppercase tracking-wider">Or</span>
+// //                         <div className="flex-grow border-t border-slate-200"></div>
+// //                     </div>
 
-//                     <Button 
-//                         buttontext="Sign Up with Google"  
-//                         handler={signupWithGoogleHandler} 
-//                         className="w-full flex items-center justify-center gap-2 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 font-medium py-2.5 rounded-lg border border-slate-300 shadow-sm transition duration-150"
-//                     />
-//                 </div>
-//             </div>
+// //                     <Button 
+// //                         buttontext="Sign Up with Google"  
+// //                         handler={signupWithGoogleHandler} 
+// //                         className="w-full flex items-center justify-center gap-2 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 font-medium py-2.5 rounded-lg border border-slate-300 shadow-sm transition duration-150"
+// //                     />
+// //                 </div>
+// //             </div>
 
-//             <ToastContainer position="top-right" autoClose={4000} theme="light" />
-//         </div>
-//     );
-// }
+// //             <ToastContainer position="top-right" autoClose={4000} theme="light" />
+// //         </div>
+// //     );
+// // }
 
-// export default Signup;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// // export default Signup;
 
 
 
@@ -165,11 +148,9 @@ import {
     Visibility,
     VisibilityOff,
     ArrowForward,
-    // AutoAwesome
 } from '@mui/icons-material';
 import AutoAwesome from '@mui/icons-material/AutoAwesome';
-
-
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import {
@@ -203,6 +184,7 @@ function Signup() {
         console.log(value, name);
         setForm((prev) => ({ ...prev, [name]: value }));
     }
+    const navigate = useNavigate();
 
 
     async function handleSignup() {
@@ -265,9 +247,10 @@ function Signup() {
             console.log(response);
 
             if (response.user) {
-                toast.success(
-                    "user signup successfully!"
-                );
+                toast.success("user signup successfully!" );
+                setTimeout(() => {
+                     navigate("/login");
+                }, 2000);
             }
 
         } catch (error) {
@@ -286,20 +269,20 @@ function Signup() {
                 background: `
                     radial-gradient(
                         circle at 10% 80%,
-                        rgba(99,102,241,0.10),
-                        transparent 30%
+                        rgba(99,102,241,0.12),
+                        transparent 40%
                     ),
                     radial-gradient(
                         circle at 90% 15%,
-                        rgba(168,85,247,0.10),
-                        transparent 30%
+                        rgba(168,85,247,0.12),
+                        transparent 40%
                     ),
                     #F8FAFC
                 `,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                p: { xs: 2, md: 4 },
+                p: { xs: 2, sm: 3, md: 4 },
                 overflow: "hidden"
             }}
         >
@@ -310,11 +293,10 @@ function Signup() {
                     width: "100%",
                     maxWidth: "1120px",
                     minHeight: { xs: "auto", md: "680px" },
-                    borderRadius: "32px",
+                    borderRadius: "28px",
                     overflow: "hidden",
-                    border: "1px solid rgba(226,232,240,0.9)",
-                    boxShadow:
-                        "0 30px 80px rgba(15,23,42,0.08)",
+                    border: "1px solid rgba(226, 232, 240, 0.8)",
+                    boxShadow: "0 25px 70px -12px rgba(15, 23, 42, 0.08)",
                     display: "flex",
                     background: "#ffffff"
                 }}
@@ -336,7 +318,7 @@ function Signup() {
                             linear-gradient(
                                 145deg,
                                 #EEF2FF 0%,
-                                #F5F3FF 48%,
+                                #F5F3FF 50%,
                                 #FAF5FF 100%
                             )
                         `
@@ -346,26 +328,26 @@ function Signup() {
                     <Box
                         sx={{
                             position: "absolute",
-                            width: 300,
-                            height: 300,
+                            width: 340,
+                            height: 340,
                             borderRadius: "50%",
-                            background:
-                                "rgba(99,102,241,0.11)",
-                            top: -110,
-                            left: -100
+                            background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
+                            top: -120,
+                            left: -110,
+                            filter: "blur(20px)"
                         }}
                     />
 
                     <Box
                         sx={{
                             position: "absolute",
-                            width: 200,
-                            height: 200,
+                            width: 260,
+                            height: 260,
                             borderRadius: "50%",
-                            background:
-                                "rgba(168,85,247,0.10)",
-                            right: -70,
-                            bottom: 30
+                            background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+                            right: -80,
+                            bottom: 20,
+                            filter: "blur(20px)"
                         }}
                     />
 
@@ -382,22 +364,20 @@ function Signup() {
                         <Stack
                             direction="row"
                             alignItems="center"
-                            spacing={1.2}
+                            spacing={1.5}
                         >
 
                             <Box
                                 sx={{
-                                    width: 42,
-                                    height: 42,
+                                    width: 44,
+                                    height: 44,
                                     borderRadius: "14px",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    background:
-                                        "linear-gradient(135deg,#6366F1,#8B5CF6)",
+                                    background: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
                                     color: "white",
-                                    boxShadow:
-                                        "0 10px 25px rgba(99,102,241,0.25)"
+                                    boxShadow: "0 8px 20px rgba(99, 102, 241, 0.28)"
                                 }}
                             >
                                 <AutoAwesome fontSize="small" />
@@ -405,15 +385,14 @@ function Signup() {
 
                             <Typography
                                 sx={{
-                                    fontSize: "21px",
+                                    fontSize: "22px",
                                     fontWeight: 800,
-                                    color: "#1E293B"
+                                    color: "#0F172A",
+                                    letterSpacing: "-0.5px"
                                 }}
                             >
                                 Talha
-                                <span style={{
-                                    color: "#6366F1"
-                                }}>
+                                <span style={{ color: "#6366F1" }}>
                                     Dev
                                 </span>
                             </Typography>
@@ -436,14 +415,14 @@ function Signup() {
                         <Typography
                             sx={{
                                 fontSize: {
-                                    md: "44px",
-                                    lg: "50px"
+                                    md: "42px",
+                                    lg: "48px"
                                 },
-                                lineHeight: 1.08,
+                                lineHeight: 1.12,
                                 fontWeight: 800,
-                                letterSpacing: "-2px",
-                                color: "#1E293B",
-                                mb: 3
+                                letterSpacing: "-1.5px",
+                                color: "#0F172A",
+                                mb: 2.5
                             }}
                         >
                             Turn your
@@ -454,14 +433,10 @@ function Signup() {
                             <Box
                                 component="span"
                                 sx={{
-                                    background:
-                                        "linear-gradient(90deg,#6366F1,#A855F7)",
-                                    backgroundClip:
-                                        "text",
-                                    WebkitBackgroundClip:
-                                        "text",
-                                    WebkitTextFillColor:
-                                        "transparent"
+                                    background: "linear-gradient(90deg, #6366F1 #A855F7)",
+                                    backgroundClip: "text",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent"
                                 }}
                             >
                                 stories.
@@ -472,20 +447,18 @@ function Signup() {
 
                         <Typography
                             sx={{
-                                fontSize: "16px",
-                                lineHeight: 1.8,
+                                fontSize: "15px",
+                                lineHeight: 1.7,
                                 color: "#64748B",
                                 maxWidth: "390px"
                             }}
                         >
-                            Create your account and start
-                            sharing your knowledge, experiences
-                            and ideas with the world.
+                            Create your account and start sharing your knowledge, experiences and ideas with the world.
                         </Typography>
 
 
                         <Stack
-                            spacing={1.5}
+                            spacing={1.8}
                             sx={{ mt: 4 }}
                         >
 
@@ -499,7 +472,7 @@ function Signup() {
                                     key={item}
                                     direction="row"
                                     alignItems="center"
-                                    spacing={1.5}
+                                    spacing={1.8}
                                 >
 
                                     <Box
@@ -507,15 +480,16 @@ function Signup() {
                                             width: 8,
                                             height: 8,
                                             borderRadius: "50%",
-                                            background:
-                                                "#6366F1"
+                                            background: "#6366F1",
+                                            boxShadow: "0 0 10px rgba(99, 102, 241, 0.5)"
                                         }}
                                     />
 
                                     <Typography
                                         sx={{
                                             fontSize: "14px",
-                                            color: "#475569"
+                                            fontWeight: 500,
+                                            color: "#334155"
                                         }}
                                     >
                                         {item}
@@ -552,14 +526,14 @@ function Signup() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        p: { xs: 3, sm: 5, md: 7 }
+                        p: { xs: 3, sm: 5, md: 6 }
                     }}
                 >
 
                     <Box
                         sx={{
                             width: "100%",
-                            maxWidth: "430px"
+                            maxWidth: "400px"
                         }}
                     >
 
@@ -573,8 +547,8 @@ function Signup() {
                                     md: "none"
                                 },
                                 alignItems: "center",
-                                gap: 1,
-                                mb: 5
+                                gap: 1.5,
+                                mb: 4
                             }}
                         >
 
@@ -582,12 +556,11 @@ function Signup() {
                                 sx={{
                                     width: 40,
                                     height: 40,
-                                    borderRadius: "13px",
+                                    borderRadius: "12px",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    background:
-                                        "linear-gradient(135deg,#6366F1,#8B5CF6)",
+                                    background: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
                                     color: "white"
                                 }}
                             >
@@ -598,13 +571,11 @@ function Signup() {
                                 sx={{
                                     fontSize: "20px",
                                     fontWeight: 800,
-                                    color: "#1E293B"
+                                    color: "#0F172A"
                                 }}
                             >
                                 Talha
-                                <span style={{
-                                    color: "#6366F1"
-                                }}>
+                                <span style={{ color: "#6366F1" }}>
                                     Dev
                                 </span>
                             </Typography>
@@ -614,18 +585,18 @@ function Signup() {
 
                         {/* Heading */}
 
-                        <Box sx={{ mb: 4 }}>
+                        <Box sx={{ mb: 3.5 }}>
 
                             <Typography
                                 sx={{
                                     fontSize: {
-                                        xs: "30px",
-                                        sm: "34px"
+                                        xs: "26px",
+                                        sm: "30px"
                                     },
                                     fontWeight: 800,
-                                    color: "#1E293B",
-                                    letterSpacing: "-1px",
-                                    mb: 1
+                                    color: "#0F172A",
+                                    letterSpacing: "-0.8px",
+                                    mb: 0.8
                                 }}
                             >
                                 Create your account ✨
@@ -634,7 +605,7 @@ function Signup() {
                             <Typography
                                 sx={{
                                     color: "#64748B",
-                                    fontSize: "15px"
+                                    fontSize: "14px"
                                 }}
                             >
                                 Join us and start sharing your ideas.
@@ -643,7 +614,7 @@ function Signup() {
                         </Box>
 
 
-                        <Stack spacing={2.2}>
+                        <Stack spacing={2}>
 
 
                             {/* Username */}
@@ -662,11 +633,12 @@ function Signup() {
                                 }
                                 sx={{
                                     "& .MuiOutlinedInput-root": {
-                                        borderRadius: "14px",
-                                        background: "#F8FAFC"
+                                        borderRadius: "12px",
+                                        background: "#F8FAFC",
+                                        transition: "all 0.2s ease-in-out"
                                     },
                                     "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                        borderColor: "#818CF8"
+                                        borderColor: "#A5B4FC"
                                     },
                                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                         borderColor: "#6366F1",
@@ -695,11 +667,12 @@ function Signup() {
                                 }
                                 sx={{
                                     "& .MuiOutlinedInput-root": {
-                                        borderRadius: "14px",
-                                        background: "#F8FAFC"
+                                        borderRadius: "12px",
+                                        background: "#F8FAFC",
+                                        transition: "all 0.2s ease-in-out"
                                     },
                                     "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                        borderColor: "#818CF8"
+                                        borderColor: "#A5B4FC"
                                     },
                                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                         borderColor: "#6366F1",
@@ -732,11 +705,12 @@ function Signup() {
                                 }
                                 sx={{
                                     "& .MuiOutlinedInput-root": {
-                                        borderRadius: "14px",
-                                        background: "#F8FAFC"
+                                        borderRadius: "12px",
+                                        background: "#F8FAFC",
+                                        transition: "all 0.2s ease-in-out"
                                     },
                                     "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                                        borderColor: "#818CF8"
+                                        borderColor: "#A5B4FC"
                                     },
                                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                         borderColor: "#6366F1",
@@ -760,9 +734,9 @@ function Signup() {
                                             >
                                                 {showPassword
                                                     ?
-                                                    <VisibilityOff />
+                                                    <VisibilityOff fontSize="small" />
                                                     :
-                                                    <Visibility />
+                                                    <Visibility fontSize="small" />
                                                 }
                                             </IconButton>
 
@@ -781,20 +755,18 @@ function Signup() {
                                 endIcon={<ArrowForward />}
                                 sx={{
                                     mt: 1,
-                                    height: "54px",
-                                    borderRadius: "14px",
+                                    height: "50px",
+                                    borderRadius: "12px",
                                     textTransform: "none",
                                     fontSize: "15px",
                                     fontWeight: 700,
-                                    background:
-                                        "linear-gradient(135deg,#6366F1,#7C3AED)",
-                                    boxShadow:
-                                        "0 12px 25px rgba(99,102,241,0.22)",
+                                    background: "linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)",
+                                    boxShadow: "0 10px 20px -5px rgba(99, 102, 241, 0.4)",
+                                    transition: "all 0.2s ease-in-out",
                                     "&:hover": {
-                                        background:
-                                            "linear-gradient(135deg,#4F46E5,#6D28D9)",
-                                        boxShadow:
-                                            "0 15px 30px rgba(99,102,241,0.30)"
+                                        background: "linear-gradient(135deg, #4F46E5 0%, #4338CA 100%)",
+                                        boxShadow: "0 12px 24px -4px rgba(99, 102, 241, 0.5)",
+                                        transform: "translateY(-1px)"
                                     }
                                 }}
                             >
@@ -804,8 +776,11 @@ function Signup() {
 
                             <Divider
                                 sx={{
+                                    my: 1,
                                     color: "#94A3B8",
                                     fontSize: "12px",
+                                    fontWeight: 600,
+                                    letterSpacing: "0.5px",
                                     "&::before, &::after": {
                                         borderColor: "#E2E8F0"
                                     }
@@ -824,17 +799,19 @@ function Signup() {
                                     signupWithGoogleHandler
                                 }
                                 sx={{
-                                    height: "52px",
-                                    borderRadius: "14px",
+                                    height: "48px",
+                                    borderRadius: "12px",
                                     textTransform: "none",
                                     fontSize: "14px",
                                     fontWeight: 600,
                                     color: "#334155",
                                     borderColor: "#E2E8F0",
                                     background: "#FFFFFF",
+                                    transition: "all 0.2s ease-in-out",
                                     "&:hover": {
                                         borderColor: "#CBD5E1",
-                                        background: "#F8FAFC"
+                                        background: "#F8FAFC",
+                                        transform: "translateY(-1px)"
                                     }
                                 }}
                             >
@@ -843,7 +820,7 @@ function Signup() {
                                     component="span"
                                     sx={{
                                         fontWeight: 800,
-                                        fontSize: "18px",
+                                        fontSize: "17px",
                                         mr: 1.5,
                                         color: "#4285F4"
                                     }}
@@ -863,7 +840,7 @@ function Signup() {
                         <Typography
                             align="center"
                             sx={{
-                                mt: 4,
+                                mt: 3.5,
                                 fontSize: "14px",
                                 color: "#64748B"
                             }}
@@ -878,8 +855,7 @@ function Signup() {
                                     fontWeight: 700,
                                     textDecoration: "none",
                                     "&:hover": {
-                                        textDecoration:
-                                            "underline"
+                                        textDecoration: "underline"
                                     }
                                 }}
                             >
