@@ -120,13 +120,13 @@ function BlogApp() {
 
 
   const textColor = isDarkMode
-    ? "#f8fafc"
-    : "#0f172a";
+    ? "gradient(90deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%)"
+    : "#1e293b";
 
 
   const textMuted = isDarkMode
-    ? "#94a3b8"
-    : "#475569";
+    ? "rgba(255, 255, 255, 0.6)"
+    : "#6b7280";
 
 
   const cardBg = isDarkMode
