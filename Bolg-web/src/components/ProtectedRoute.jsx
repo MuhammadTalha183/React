@@ -3,6 +3,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config.js";
 import { Navigate } from "react-router-dom";
 
+
+export let userId = null
+
 const ProtectedRoute = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,6 +15,7 @@ const ProtectedRoute = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
 
       if (user) {
+        userId = user.uid;
         console.log("user", user);
         setUser(user);
       } else {

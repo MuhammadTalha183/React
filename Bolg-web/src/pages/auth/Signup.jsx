@@ -206,6 +206,7 @@ export const saveDataIntoDB = async (name = "", data) => {
             email: data.email || "",
             name: data.displayName || name || "",
             photoUrl: data.photoURL || "",
+            role: "user",
         });
 
         console.log("🔥 FIRESTORE DATA SAVED");
