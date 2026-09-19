@@ -19,12 +19,80 @@
 // export default Dashboard
 import Navbar from "../../components/Navbar";
 import CreateBlogModal from "../../components/CreateBlogModal";
+import AnimatedCanvasBackground from "../../components/AnimatedCanvasBackground";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase/config";
+
+
+
 
 function Dashboard() {
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const [user, setUser] = useState(null);
+
+
+  const themeBg = isDarkMode
+    ? "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #111827 100%)"
+    : "linear-gradient(135deg, #f8fafc 0%, #eef2ff 45%, #faf5ff 100%)";
+
+
+  const textColor = isDarkMode
+    ? "gradient(90deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%)"
+    : "#1e293b";
+
+
+  const textMuted = isDarkMode
+    ? "rgba(255, 255, 255, 0.6)"
+    : "#6b7280";
+
+
+  const cardBg = isDarkMode
+    ? "rgba(30, 41, 59, 0.75)"
+    : "rgba(255, 255, 255, 0.8)";
+
+
+  const cardBorder = isDarkMode
+    ? "rgba(255, 255, 255, 0.12)"
+    : "rgba(99, 102, 241, 0.15)";
+
+
+  useEffect(() => {
+  
+      const unsubscribe =
+        onAuthStateChanged(
+          auth,
+          (currentUser) => {
+  
+            setUser(currentUser);
+  
+          }
+        );
+  
+      return () => unsubscribe();
+  
+    }, []);
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+<AnimatedCanvasBackground
+        isDarkMode={isDarkMode}
+      />
+       <Navbar
+        user={user}
 
-      <Navbar />
+        isDarkMode={isDarkMode}
+
+        setIsDarkMode={setIsDarkMode}
+
+        textColor={textColor}
+
+        textMuted={textMuted}
+
+        cardBorder={cardBorder}
+      />
+
 
       {/* Dashboard Content */}
       <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

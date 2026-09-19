@@ -53,7 +53,7 @@ import Placeholder from "./pages/Placeholder";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/dashboard/Dashboard";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 import { FEATURED_POSTS } from "./data/blogData";
 
 import { Compass } from "lucide-react";
@@ -397,7 +397,7 @@ function App() {
 
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
         />
 
       </Routes>
