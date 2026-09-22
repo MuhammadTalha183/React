@@ -57,6 +57,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { FEATURED_POSTS } from "./data/blogData";
 
 import { Compass } from "lucide-react";
+import Blog from "./pages/Blog";
 
 
 // ==========================================
@@ -114,31 +115,25 @@ function BlogApp() {
   // THEME
   // ==========================================
 
-  const themeBg = isDarkMode
-    ? "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #111827 100%)"
-    : "linear-gradient(135deg, #f8fafc 0%, #eef2ff 45%, #faf5ff 100%)";
+ const themeBg = isDarkMode
+  ? "linear-gradient(135deg, #0f172a 0%, #111827 50%, #172033 100%)"
+  : "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eef2ff 100%)";
 
+const textColor = isDarkMode
+  ? "#f1f5f9"
+  : "#0f172a";
 
-  const textColor = isDarkMode
-    ? "gradient(90deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%)"
-    : "#1e293b";
+const textMuted = isDarkMode
+  ? "#94a3b8"
+  : "#64748b";
 
+const cardBg = isDarkMode
+  ? "rgba(17, 24, 39, 0.82)"
+  : "rgba(255, 255, 255, 0.88)";
 
-  const textMuted = isDarkMode
-    ? "rgba(255, 255, 255, 0.6)"
-    : "#6b7280";
-
-
-  const cardBg = isDarkMode
-    ? "rgba(30, 41, 59, 0.75)"
-    : "rgba(255, 255, 255, 0.8)";
-
-
-  const cardBorder = isDarkMode
-    ? "rgba(255, 255, 255, 0.12)"
-    : "rgba(99, 102, 241, 0.15)";
-
-
+const cardBorder = isDarkMode
+  ? "rgba(148, 163, 184, 0.16)"
+  : "rgba(15, 23, 42, 0.08)";
   return (
 
     <Box
@@ -226,21 +221,7 @@ function BlogApp() {
 
         {/* ARTICLES */}
 
-        <Route
-          path="/blogs"
-          element={
-            <Placeholder
-              title="Articles & Explore"
-              icon={Compass}
-              description="Browse over 12,000+ curated essays, architectural tech breakdowns, and creative guides."
-
-              textColor={textColor}
-              textMuted={textMuted}
-              cardBg={cardBg}
-              cardBorder={cardBorder}
-            />
-          }
-        />
+        
 
 
         {/* ABOUT */}
@@ -373,6 +354,7 @@ function App() {
         <Route
           path="/*"
           element={<BlogApp />}
+          
         />
 
 
@@ -398,6 +380,12 @@ function App() {
         <Route
           path="/dashboard"
           element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
+        />
+
+        
+        <Route
+          path="/blog"
+          element={<Blog/>}
         />
 
       </Routes>

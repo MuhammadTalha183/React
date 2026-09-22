@@ -251,7 +251,7 @@ function Navbar({
     },
     {
       label: "Articles",
-      path: "/blogs",
+      path: "/blog",
     },
     {
       label: "About Us",
