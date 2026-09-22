@@ -58,6 +58,7 @@ import { FEATURED_POSTS } from "./data/blogData";
 
 import { Compass } from "lucide-react";
 import Blog from "./pages/Blog";
+import BlogCard from "./components/BlogCard";
 
 
 // ==========================================
@@ -385,7 +386,12 @@ function App() {
         
         <Route
           path="/blog"
-          element={<Blog/>}
+          element={<BlogCard
+          isDarkMode={isDarkMode}
+              textColor={textColor}
+              textMuted={textMuted}
+              cardBg={cardBg}
+              cardBorder={cardBorder}/>}
         />
 
       </Routes>
