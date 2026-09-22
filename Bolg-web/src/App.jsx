@@ -240,6 +240,16 @@ const cardBorder = isDarkMode
           }
         />
 
+         <Route
+          path="/blog"
+          element={<BlogCard
+          isDarkMode={isDarkMode}
+              textColor={textColor}
+              textMuted={textMuted}
+              cardBg={cardBg}
+              cardBorder={cardBorder}/>}
+        />
+
       </Routes>
 
 
@@ -384,15 +394,7 @@ function App() {
         />
 
         
-        <Route
-          path="/blog"
-          element={<BlogCard
-          isDarkMode={isDarkMode}
-              textColor={textColor}
-              textMuted={textMuted}
-              cardBg={cardBg}
-              cardBorder={cardBorder}/>}
-        />
+       
 
       </Routes>
 
