@@ -72,10 +72,22 @@ console.log(`Student ID: ${studentId}, Grade: ${studentGrade}`);
 // ## Level 2 — Type Inference and Type Annotations
 // ### Q11. Type Inference
 // Declare variables for a name, age, and active status without explicitly writing their types. Observe which types TypeScript infers.
+let my_first_name = "Talha";
+let my_age = 21;
+let my_status = false;
 // ### Q12. Type Annotations
 // Create a function that accepts two numbers and returns their sum. Explicitly annotate its parameters and return type.
+function sun(a, b) {
+    return a + b;
+}
+let funResponce = sun(5, 10);
+console.log(`Sum: ${funResponce}`);
 // ### Q13. Inference in Arrays
 // Create an array of numbers without specifying its type. Try adding a string and observe the compiler's response.
+let my_arr = [1, 2, 3, 4, 5];
+console.log("array of numbers ", my_arr);
+// my_arr.push("6");
+console.log("array of numbers after adding string ", my_arr);
 // ### Q14. Inference in Functions
 // Create an arrow function that multiplies two numbers. Allow TypeScript to infer the return type from the function body.
 // ### Q15. Type Narrowing
