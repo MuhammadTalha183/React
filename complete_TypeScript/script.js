@@ -90,19 +90,69 @@ console.log("array of numbers ", my_arr);
 console.log("array of numbers after adding string ", my_arr);
 // ### Q14. Inference in Functions
 // Create an arrow function that multiplies two numbers. Allow TypeScript to infer the return type from the function body.
+const my_arrow = (a, b) => {
+    return a * b;
+};
+let check_infer = my_arrow(5, 5);
 // ### Q15. Type Narrowing
 // Create a function that accepts `string | number`. Use `typeof` to determine the actual type and handle both cases correctly.
-// ## Level 3 — Interfaces and Type Aliases
-// ### Q16. Interface: Object Shape
-// Create an interface named `Student` with `id`, `name`, `email`, and `cgpa`. Create two student objects that follow this interface.
-// ### Q17. Optional Interface Properties
-// Extend the `Student` interface with an optional `phone` property. Create one student with a phone number and another without one.
-// ### Q18. Readonly Properties
-// Create an interface named `Car` with a `readonly` registration number and a mutable color. Create a car object and try changing both properties.
-// ### Q19. Interface Extension
-// Create an interface `Person` with `name` and `age`. Extend it with a `Teacher` interface that adds `subject` and `salary`. Create a teacher object.
-// ### Q20. Interface with Methods
-// Create an interface named `Calculator` containing an `add` method and a `subtract` method. Implement an object that satisfies this interface.
+function myNarrowChecker(value) {
+    if (typeof value == "string") {
+        let responce = value.length;
+        console.log("the type is string, length:", responce);
+    }
+    else {
+        let responce = value * 2;
+        console.log("the type is number, doubled:", responce);
+    }
+}
+myNarrowChecker("Hello");
+myNarrowChecker(10);
+let student1 = {
+    id: 1,
+    name: "Talha",
+    email: "abc@gmail.com",
+    cgpa: 3.3
+};
+let student2 = {
+    id: 2,
+    name: "Ali",
+    email: "xyz@gmail.com",
+    cgpa: 3.5
+};
+console.log("Student 1 object ", student1);
+console.log("student 2 ", student2);
+let student3 = {
+    id: 3,
+    name: "Ahmed",
+    email: "def@gmail.com",
+    cgpa: 3.7,
+    phone: 1234567890,
+    address: "123 Main St"
+};
+console.log("Student 3 object with phone and address ", student3);
+let myCar = {
+    regNumber: "ABC123",
+    color: "Red",
+    company: "Toyota"
+};
+console.log("Car object before color change ", myCar);
+myCar.color = "Blue";
+// myCar.regNumber = "XYZ789"  error 
+console.log("Car object after color change ", myCar);
+let teacher = {
+    name: "Talha",
+    age: 30,
+    subject: "Mathematics",
+    salary: 50000
+};
+console.log("Teacher object ", teacher);
+let myCalculator = {
+    add: (x, y) => x + y,
+    subtract: (x, y) => x - y
+};
+console.log("Addition: ", myCalculator.add(10, 5));
+console.log("Subtraction: ", myCalculator.subtract(10, 5));
 // ### Q21. Type Alias for Object Shape
 // Create a type alias named `Product` with `id`, `name`, `price`, and an optional `discount`. Create a product object.
 // ### Q22. Interface vs. Type Alias
